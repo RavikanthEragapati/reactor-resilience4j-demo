@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: resilience4j-demo
+
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 6
+
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 2
+        waitDurationInOpenState: 60s
+        minimumNumberOfCalls: 10
+        registerHealthIndicator: true
+#        recordExceptions:
+#        ignoreExceptions:
+
+
+logging:
+  level:
+    root: info
+  pattern:
+    console: '{"time":"%d{HH:mm:ss}","traceId":"%X{traceId:-}", "message":"%m"}%n'
